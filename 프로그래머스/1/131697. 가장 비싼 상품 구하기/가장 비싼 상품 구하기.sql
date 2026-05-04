@@ -1,0 +1,6 @@
+SELECT MAX(PRICE) as MAX_PRICE 
+FROM PRODUCT;
+
+
+# PRODUCT 테이블 한 개
+# 컬럼명은 MAX_PRICE로 지정
