@@ -1,0 +1,17 @@
+SELECT 
+    YEAR(E.DIFFERENTIATION_DATE) AS YEAR, 
+    (M.MAX_SIZE - E.SIZE_OF_COLONY) AS YEAR_DEV, 
+    E.ID AS ID 
+FROM 
+    ECOLI_DATA E 
+INNER JOIN (
+    SELECT YEAR(DIFFERENTIATION_DATE) AS YEAR, MAX(SIZE_OF_COLONY) AS MAX_SIZE
+    FROM ECOLI_DATA
+    GROUP BY YEAR(DIFFERENTIATION_DATE) 
+) M ON YEAR(E.DIFFERENTIATION_DATE) = M.YEAR  
+ORDER BY YEAR ASC, YEAR_DEV ASC;
+
+# ECOLI_DATA 테이블 명
+# 연도별 대장균 크기의 편차는 분화된 연도별 가장 큰 대장균의 크기 - 각 대장균의 크기로 구하며 결과는 연도에 대해 오름차순으로 정렬
+
+# 테이블이 한 개니까 서브 쿼리로 새로운 가상의 테이블 만들어야 됨 그리고 DIFFERENTIATION_DATE의 월 일 값이 무조건 ?년 1월 1일인가?
