@@ -1,0 +1,11 @@
+SELECT
+    CONCAT(QUARTER(DIFFERENTIATION_DATE), 'Q') AS S1,
+    COUNT(*)
+FROM 
+    ECOLI_DATA
+GROUP BY QUARTER(DIFFERENTIATION_DATE)
+ORDER BY S1
+
+# 최초의 대장균 개체의 PARENT_ID 는 NULL
+# 각 분기(QUARTER)별 분화된 대장균의 개체의 총 수(ECOLI_COUNT)를 출력
+# 때 각 분기에는 'Q' 를 붙이고 분기에 대해 오름차순으로 정렬
